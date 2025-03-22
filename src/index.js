@@ -13,7 +13,9 @@ gsap.defaults({
   duration: 0.4,
 });
 
-initFunctions();
+$(document).ready(function () {
+  initFunctions();
+});
 
 function initFunctions() {
   initDetectScrollingDirection();
@@ -62,11 +64,6 @@ function initDetectScrollingDirection() {
     }
   });
 }
-
-// Initialize Detect Scrolling Direction
-document.addEventListener('DOMContentLoaded', () => {
-  initDetectScrollingDirection();
-});
 
 function initDropDown() {
   // Selecteer het dropdown menu, de wrapper, en de icon
@@ -173,6 +170,26 @@ function scrollTriggerAnimations() {
       y: "25%",
       ease: "linear",
     }, "<");
+  });
+
+  $(".section_contact-header").each(function () {
+    let section = $(this);
+    let sectionTrigger = section.find(".contact_header-bg");
+
+    let sectionTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      }
+    });
+
+    sectionTimeline.to(sectionTrigger, {
+      rotate: 90,
+      duration: 0.5,
+      ease: "linear",
+    });
   });
 }
 
