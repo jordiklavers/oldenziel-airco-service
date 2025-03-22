@@ -1,0 +1,53 @@
+:root {
+    --cubic-default: cubic-bezier(0.65, 0.05, 0, 1);
+    --duration-default: 0.635s;
+    --animation-default: var(--duration-default) var(--cubic-default);
+}
+
+/* ------ DIENSTEN ------ */
+
+.diensten_cta {
+    opacity: 0;
+    transform: translateY(50%);
+    transition: opacity 0.3s var(--cubic-default), transform 0.5s var(--cubic-default);
+}
+
+.diensten_cta div {
+    transform: translateY(50%);
+    transition: transform 0.3s var(--cubic-default);
+}
+
+.diensten_item img {
+    transition: transform 0.5s var(--cubic-default);
+}
+
+
+.diensten_item:hover .diensten_cta {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.diensten_item:hover .diensten_cta div {
+    transform: translateY(0);
+}
+
+.diensten_item:hover img {
+    transform: scale(1.10);
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  position: relative !important;
+  top: auto !important;
+}
+
+.nav_dropdown-menu:has(a:hover) a:not(:hover) {
+	opacity: 0.5;
+}
+
+.btn_main_wrap svg {
+    transition: transform 0.3s var(--cubic-default);
+}
+.btn_main_wrap:hover svg {
+    transform: rotate(45deg);
+}
