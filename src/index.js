@@ -4,8 +4,6 @@ import CustomEase from "https://cdn.skypack.dev/gsap/CustomEase";
 
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 
-console.log("test");
-
 CustomEase.create("main", "M0,0 C0.65,0.01 0.05,0.99 1,1");
 
 gsap.defaults({
@@ -134,7 +132,7 @@ function scrollTriggerAnimations() {
         trigger: section,
         start: "top top",
         end: "bottom top",
-        markers: true,
+        markers: false,
         scrub: true,
       }
     });
@@ -213,16 +211,11 @@ if (".swiper.is-reviews") {
   });
 }
 
-$(".faq_item").each(function (index, item) {
-  console.log(item);
-});
-
 function faqItemsAnimation() {
   const faqItems = $(".faq_item");
   let currentOpenItem = null;
 
   faqItems.each(function () {
-    console.log($(this));
     const item = $(this);
     const title = item.find(".faq_title");
     const answer = item.find(".faq_answer-wrap");
