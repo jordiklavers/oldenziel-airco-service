@@ -1,93 +1,129 @@
 :root {
-    --cubic-default: cubic-bezier(0.65, 0.05, 0, 1);
-    --duration-default: 0.635s;
-    --animation-default: var(--duration-default) var(--cubic-default);
+  --cubic-default: cubic-bezier(0.65, 0.05, 0, 1);
+  --duration-default: 0.635s;
+  --animation-default: var(--duration-default) var(--cubic-default);
 }
 
 /* ------ NAVIGATIE ------ */
 
 .nav .u-container {
-    transition: transform 0.5s var(--cubic-default), padding 0.5s var(--cubic-default);
-    transform: translateY(0%) rotate(0.001deg);
+  transition: transform 0.5s var(--cubic-default),
+    padding 0.5s var(--cubic-default);
+  transform: translateY(0%) rotate(0.001deg);
 }
 
 /* Shrink nav when scrolling started */
 [data-scrolling-started="true"] .nav .u-container {
-    padding: 1rem 0rem;
+  padding: 1rem 0rem;
 }
 
 /* ------ DIENSTEN ------ */
 
 .diensten_cta {
-    opacity: 0;
-    transform: translateY(50%);
-    transition: opacity 0.3s var(--cubic-default), transform 0.5s var(--cubic-default);
+  opacity: 0;
+  transform: translateY(50%);
+  transition: opacity 0.3s var(--cubic-default),
+    transform 0.5s var(--cubic-default);
 }
 
 .diensten_cta div {
-    transform: translateY(50%);
-    transition: transform 0.3s var(--cubic-default);
+  transform: translateY(50%);
+  transition: transform 0.3s var(--cubic-default);
 }
 
 .diensten_item img {
-    transition: transform 0.5s var(--cubic-default);
+  transition: transform 0.5s var(--cubic-default);
 }
 
-
 .diensten_item:hover .diensten_cta {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .diensten_item:hover .diensten_cta div {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
 .diensten_item:hover img {
-    transform: scale(1.10);
+  transform: scale(1.1);
 }
 
 /* ------ PROJECTEN SLIDER ------ */
 
 .projecten_item {
-    transition: opacity 0.3s var(--cubic-default);
+  transition: opacity 0.3s var(--cubic-default);
 }
 
 .swiper.is-projecten:has(.projecten_item:hover) .projecten_item:not(:hover) {
-    opacity: 0.75;
+  opacity: 0.75;
 }
 
 .projecten_item img {
-    transition: transform 0.35s var(--cubic-default);
+  transition: transform 0.35s var(--cubic-default);
 }
 
 .projecten_item:hover img {
-    transform: scale(1.10);
+  transform: scale(1.1);
 }
 
 .swiper-button-disabled {
-    opacity: 0.5;
-    cursor: not-allowed !important;
+  opacity: 0.5;
+  cursor: not-allowed !important;
 }
 
 .swiper-button-previous:not(.swiper-button-disabled):hover,
 .swiper-button-forward:not(.swiper-button-disabled):hover {
-    background-color: var(--swatch--neutral--40);
+  background-color: var(--swatch--neutral--40);
 }
 
 .swiper-button-forward,
 .swiper-button-previous {
-    cursor: pointer;
-    transition: background-color 0.3s var(--cubic-default);
+  cursor: pointer;
+  transition: background-color 0.3s var(--cubic-default);
 }
 
 .nav_dropdown-menu:has(a:hover) a:not(:hover) {
-	opacity: 0.5;
+  opacity: 0.5;
 }
 
 .btn_main_wrap svg {
-    transition: transform 0.3s var(--cubic-default);
+  transition: transform 0.3s var(--cubic-default);
 }
 .btn_main_wrap:hover svg {
-    transform: rotate(45deg);
+  transform: rotate(45deg);
 }
+
+/* Dropdown Navigation Styles */
+@media (hover: hover) and (pointer: fine) {
+  .nav_dropdown-wrap:hover .nav_dropdown-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+    transform: all 0.1s var(--cubic-default);
+  }
+
+  .nav_dropdown-wrap:hover .nav_dropdown-icon {
+    transform: rotate(90deg);
+  }
+}
+
+.nav_dropdown-menu {
+  display: flex;
+  opacity: 0;
+  transform: translateY(-1rem) scale(0.8);
+  transform-origin: 0 0;
+  pointer-events: none;
+  transition: all 0.4s var(--cubic-default);
+}
+
+.nav_dropdown-icon {
+  transition: transform 0.4s var(--cubic-default);
+}
+
+@media (max-width: 768px) {
+  .nav_dropdown-menu {
+    display: flex;
+  }
+  
+}
+

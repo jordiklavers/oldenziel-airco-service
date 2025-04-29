@@ -16,8 +16,8 @@ $(document).ready(function () {
 });
 
 function initFunctions() {
+  initNavMenu();
   initDetectScrollingDirection();
-  initDropDown();
   dienstenScroll();
   scrollTriggerAnimations();
   faqItemsAnimation();
@@ -36,6 +36,45 @@ $("section[data-theme]").each(function () {
     },
   });
 });
+
+function initNavMenu() {
+  if (window.innerWidth < 768) {
+    let dropdownState = "closed";
+    //
+    let navMenu = $(".nav_links-wrap");
+    let navTrigger = $(".btn_main_wrap.is-nav-menu")
+
+    const openNav = () => {
+      navMenu.attr("data-nav", "open");
+      navMenu.css("display", "flex");
+    }
+
+    const closeNav = () => {
+      navMenu.attr("data-nav", "closed");
+      navMenu.css("display", "none");
+    }
+
+    navTrigger.on("click", () => {
+      navMenu.attr("data-nav") === "open" ? closeNav() : openNav();
+    })
+
+    $(".nav_dropdown-wrap").on("click", () => {
+      dropdownState === "closed" ? openDropdown() : closeDropdown();  
+    })
+
+    const openDropdown = () => {
+      dropdownState = "open";
+      $(".nav_dropdown-menu").css("display", "flex");
+      $(".nav_dropdown-menu").css("opacity", "1");
+    }
+
+    const closeDropdown = () => {
+      dropdownState = "closed";
+      $(".nav_dropdown-menu").css("display", "none");
+      $(".nav_dropdown-menu").css("opacity", "0");
+    }
+  }
+}
 
 function initDetectScrollingDirection() {
   let lastScrollTop = 0;
@@ -60,44 +99,6 @@ function initDetectScrollingDirection() {
 
       lastScrollTop = nowScrollTop;
     }
-  });
-}
-
-function initDropDown() {
-  // Selecteer het dropdown menu, de wrapper, en de icon
-  const dropdownMenu = document.querySelector(".nav_dropdown-menu");
-  const dropdownWrap = document.querySelector(".nav_dropdown-wrap");
-  const dropdownIcon = document.querySelector(".nav_dropdown-icon");
-
-  // Maak een GSAP timeline aan met paused: true, zodat het niet automatisch afspeelt
-  let timeline = gsap.timeline({ paused: true, reversed: true });
-
-  // Voeg animaties voor het dropdown-menu en de icon toe aan de timeline
-  timeline
-    .to(dropdownMenu, {
-      y: "0rem", // Breng het menu naar beneden
-      opacity: 1, // Maak het zichtbaar
-      display: "flex", // Zet display op flex
-      duration: 0.4, // Hoe snel de animatie moet afspelen
-      ease: "power3.inOut", // Een zachtere animatie beweging
-    })
-    .to(
-      dropdownIcon,
-      {
-        rotate: 90, // Rotatie van de icon
-        duration: 0.4, // Hoe snel de animatie moet afspelen
-        ease: "power3.inOut", // Een zachtere animatie beweging
-      },
-      "=<"
-    ); // Zorg ervoor dat beide animaties tegelijkertijd beginnen
-
-  // Voeg hover-in en hover-out toe aan de wrapper
-  dropdownWrap.addEventListener("mouseenter", () => {
-    timeline.play(); // Speel de timeline af bij hover
-  });
-
-  dropdownWrap.addEventListener("mouseleave", () => {
-    timeline.reverse(); // Speel de timeline terug wanneer je niet meer hovert
   });
 }
 
