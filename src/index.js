@@ -209,6 +209,11 @@ if (".swiper.is-reviews") {
       el: ".swiper-pagination",
       clickable: true,
     },
+    breakpoints: {
+      768: {
+        slidesPerView: 1,
+      },
+    },
   });
 }
 
@@ -262,5 +267,10 @@ let swiper = new Swiper(".swiper.is-projecten", {
   navigation: {
     nextEl: ".swiper-button-forward",
     prevEl: ".swiper-button-previous",
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 1,
+    },
   },
 });
