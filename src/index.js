@@ -42,60 +42,64 @@ function initNavMenu() {
     let dropdownState = "closed";
     //
     let navMenu = $(".nav_links-wrap");
-    let navTrigger = $(".btn_main_wrap.is-nav-menu")
+    let navTrigger = $(".btn_main_wrap.is-nav-menu");
 
     const openNav = () => {
       navMenu.attr("data-nav", "open");
       navMenu.css("display", "flex");
-    }
+    };
 
     const closeNav = () => {
       navMenu.attr("data-nav", "closed");
       navMenu.css("display", "none");
-    }
+    };
 
     navTrigger.on("click", () => {
       navMenu.attr("data-nav") === "open" ? closeNav() : openNav();
-    })
+    });
 
     $(".nav_dropdown-wrap").on("click", () => {
-      dropdownState === "closed" ? openDropdown() : closeDropdown();  
-    })
+      dropdownState === "closed" ? openDropdown() : closeDropdown();
+    });
 
     const openDropdown = () => {
       dropdownState = "open";
       $(".nav_dropdown-menu").css("display", "flex");
       $(".nav_dropdown-menu").css("opacity", "1");
-    }
+    };
 
     const closeDropdown = () => {
       dropdownState = "closed";
       $(".nav_dropdown-menu").css("display", "none");
       $(".nav_dropdown-menu").css("opacity", "0");
-    }
+    };
   }
 }
 
 function initDetectScrollingDirection() {
   let lastScrollTop = 0;
-  const threshold = 10; // Minimal scroll distance to switch to up/down 
+  const threshold = 10; // Minimal scroll distance to switch to up/down
   const thresholdTop = 50; // Minimal scroll distance from top of window to start
 
-  window.addEventListener('scroll', () => {
+  window.addEventListener("scroll", () => {
     const nowScrollTop = window.scrollY;
 
     if (Math.abs(lastScrollTop - nowScrollTop) >= threshold) {
       // Update Scroll Direction
-      const direction = nowScrollTop > lastScrollTop ? 'down' : 'up';
-      document.querySelectorAll('[data-scrolling-direction]').forEach(el => 
-        el.setAttribute('data-scrolling-direction', direction)
-      );
+      const direction = nowScrollTop > lastScrollTop ? "down" : "up";
+      document
+        .querySelectorAll("[data-scrolling-direction]")
+        .forEach((el) =>
+          el.setAttribute("data-scrolling-direction", direction)
+        );
 
       // Update Scroll Started
       const started = nowScrollTop > thresholdTop;
-      document.querySelectorAll('[data-scrolling-started]').forEach(el => 
-        el.setAttribute('data-scrolling-started', started ? 'true' : 'false')
-      );
+      document
+        .querySelectorAll("[data-scrolling-started]")
+        .forEach((el) =>
+          el.setAttribute("data-scrolling-started", started ? "true" : "false")
+        );
 
       lastScrollTop = nowScrollTop;
     }
@@ -126,8 +130,8 @@ function dienstenScroll() {
 function scrollTriggerAnimations() {
   $(".section_hero").each(function () {
     let section = $(this);
-    let sectionContent = section.find(".hero_content");  
-    
+    let sectionContent = section.find(".hero_content");
+
     let tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -135,7 +139,7 @@ function scrollTriggerAnimations() {
         end: "bottom top",
         markers: false,
         scrub: true,
-      }
+      },
     });
 
     tl.to(sectionContent, {
@@ -156,7 +160,7 @@ function scrollTriggerAnimations() {
         start: "top bottom",
         end: "bottom top",
         scrub: true,
-      }
+      },
     });
 
     sectionTimeline.to(sectionTrigger, {
@@ -165,10 +169,14 @@ function scrollTriggerAnimations() {
       ease: "linear",
     });
 
-    sectionTimeline.from(sectionContent, {
-      y: "25%",
-      ease: "linear",
-    }, "<");
+    sectionTimeline.from(
+      sectionContent,
+      {
+        y: "25%",
+        ease: "linear",
+      },
+      "<"
+    );
   });
 
   $(".section_contact-header").each(function () {
@@ -181,7 +189,7 @@ function scrollTriggerAnimations() {
         start: "top bottom",
         end: "bottom top",
         scrub: true,
-      }
+      },
     });
 
     sectionTimeline.to(sectionTrigger, {
@@ -211,7 +219,7 @@ if (".swiper.is-reviews") {
     },
     breakpoints: {
       768: {
-        slidesPerView: 1,
+        slidesPerView: 3.5,
       },
     },
   });
@@ -259,7 +267,6 @@ function faqItemsAnimation() {
 
 let swiper = new Swiper(".swiper.is-projecten", {
   direction: "horizontal",
-  slidesPerView: 4,
   spaceBetween: 16,
   autoplay: {
     delay: 4000,
@@ -269,8 +276,14 @@ let swiper = new Swiper(".swiper.is-projecten", {
     prevEl: ".swiper-button-previous",
   },
   breakpoints: {
-    768: {
+    320: {
       slidesPerView: 1,
+    },
+    480: {
+      slidesPerView: 3,
+    },
+    1024: {
+      slidesPerView: 4,
     },
   },
 });
