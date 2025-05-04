@@ -218,7 +218,13 @@ if (".swiper.is-reviews") {
       clickable: true,
     },
     breakpoints: {
-      768: {
+      320: {
+        slidesPerView: 1,
+      },
+      480: {
+        slidesPerView: 2.5,
+      },
+      1024: {
         slidesPerView: 3.5,
       },
     },
