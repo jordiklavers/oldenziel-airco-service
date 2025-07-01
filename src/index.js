@@ -58,7 +58,7 @@ function initNavMenu() {
       navMenu.attr("data-nav") === "open" ? closeNav() : openNav();
     });
 
-    $(".nav_dropdown-wrap").on("click", () => {
+    $(".nav_dropdown-wrap .nav_link").on("click", () => {
       dropdownState === "closed" ? openDropdown() : closeDropdown();
     });
 
